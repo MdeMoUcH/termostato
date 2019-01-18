@@ -1,6 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 # MdeMoUcH 2018
+#Script para que vaya guardando la información del arduino en la base de datos.
 
 
 '''

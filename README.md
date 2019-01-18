@@ -8,5 +8,5 @@
 
 @reboot   /home/pi/termostato/reboot.sh >> /home/pi/scripts/log/em.log
 
-0 0   * * *   php /home/pi/termostato/worker.php >> /home/pi/scripts/log/worker.log
+0 0   * * *   php /home/pi/termostato/html/worker.php >> /home/pi/scripts/log/worker.log
 ```
