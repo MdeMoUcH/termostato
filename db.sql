@@ -1,5 +1,5 @@
-# MdeMoUcH 2018
-#Script para crear la base de datos.
+-- MdeMoUcH 2018
+-- Script para crear la base de datos.
 
 
 CREATE TABLE `em_daily_temp` (
