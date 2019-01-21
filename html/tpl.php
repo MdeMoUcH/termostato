@@ -6,34 +6,33 @@
 
 		<style>
 			body {background-color: #333;color: #111;}
-			.col-sm {margin-top:10px;}
+			.col-sm-3, .col-sm-6 {margin-top:10px;margin-bottom:-12px;}
 			.align_center {text-align:center;}
 			.align_right {text-align:right;}
 			.btn {padding-top:12px;padding-bottom:12px;}
 			.btn-danger {width:60%;}
 			.btn-success {width:60%;}
-			.btn-secondary {min-width:15%;}
+			.btn-secondary {min-width:15%;margin-bottom:10px;}
 			.container-fluid {width:95%;}
 			.row {background-color:#6C757D;margin:10px;border-radius:4px;width:100%;}
 			.botonera {margin-top:10px;width:100%;}
 			.chart-container {position:relative;height:70vh;width:100%;margin-top:30px;}
-			.titulo {50vw;}
 		</style> 
 	</head>
 	
 <body style="font-family: Verdana;">
 	<div class="container-fluid">
 		<div class="row">
-			<div class="col-sm">
-				<div style="position:relative 5px 5px;width:64px;height:64px;margin-right:10px;background-color:<?=$temp_color?>;border-style:solid;clear:both;float:left;border-color:#000;">
+			<div class="col-sm-3">
+				<div style="position:relative 5px 5px;width:64px;height:64px;background-color:<?=$temp_color?>;border-style:solid;clear:both;float:left;border-color:#000;">
 					<div style="padding:0px;margin:0px;height:<?=$temp_height?>;background-color:#E5E5E5;">&nbsp;</div>
 				</div>
 			</div>
-			<div class="col-sm align_center titulo">
+			<div class="col-sm-6 align_center titulo">
 				<h3>Ter-MoUcH-tato</h3>
 				<p><?=date('Y-m-d H:i:s')?></p>
 			</div>
-			<div class="col-sm align_right">
+			<div class="col-sm-3 align_right">
 				<h1><?=$temp?>&ordm;C &nbsp;</h1>
 			</div>
 		</div>
