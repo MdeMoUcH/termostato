@@ -11,6 +11,7 @@
 			.align_right {text-align:right;}
 			.btn {padding-top:12px;padding-bottom:12px;}
 			.btn-danger {width:60%;}
+			.btn-success {width:60%;}
 			.btn-secondary {min-width:15%;}
 			.container-fluid {width:95%;}
 			.row {background-color:#6C757D;margin:10px;border-radius:4px;width:100%;}
@@ -52,7 +53,7 @@
 					<a class="btn btn-secondary" href='/?md=yesterday'><b>Ayer</b></a>
 				</p>
 				<p class="align_center">
-					<a class="btn btn-danger" href='/?cale=<?=$cale?>'><b><?=$cale_name?></b></b></a>
+					<a class="btn btn-<?=$cale_class?>" href='/?cale=<?=$cale?>'><b><?=$cale_name?></b></b></a>
 				</p>
 			</div>
 		</div>

@@ -80,9 +80,11 @@ if(!$bbdd->consulta('SELECT * FROM em_data ORDER BY fecha DESC LIMIT 1;')){
 	if($bbdd->consulta('SELECT * FROM em_status ORDER BY fecha DESC LIMIT 1;')){
 		$cale = '1';
 		$cale_name = 'Activar';
+		$cale_class = 'success';
 		if($bbdd->resultado[0]['status'] == '1'){
 			$cale = '0';
 			$cale_name = 'Desactivar';
+			$cale_class = 'danger';
 		}
 	}
 }
