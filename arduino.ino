@@ -81,7 +81,7 @@ void loop(){
 
   
   if(cale=="ON"){
-    tempC = tempC + 0.5;
+    tempC = tempC + 0.7;
   }
   
   

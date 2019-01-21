@@ -6,28 +6,26 @@ include_once('lib.php');
 $bbdd = new Bbdd();
 
 
-if(@$_GET['md'] == 'daily'){
-	$s_sql = 'SELECT fecha,SUM(temperatura)/COUNT(fecha) as temperatura FROM em_data GROUP BY DATE(fecha) ORDER BY fecha DESC LIMIT 7;';
+$b_refresh = false;
+if(@$_GET['md'] == 'hourly'){
+	$s_sql = 'SELECT * FROM em_data WHERE fecha like "%5:00" OR fecha like "%0:00" ORDER BY fecha DESC LIMIT 100;';
 }elseif(@$_GET['md'] == 'yesterday'){
 	$s_sql = 'SELECT fecha,SUM(temperatura)/COUNT(fecha) as temperatura FROM em_data WHERE fecha like "'.date('Y-m-d',strtotime('-1 day')).'%" AND (fecha like "%5:00" OR fecha like "%0:00") GROUP BY HOUR(fecha) ORDER BY fecha DESC;';
 }elseif(@$_GET['md'] == 'today'){
 	$s_sql = 'SELECT fecha,SUM(temperatura)/COUNT(fecha) as temperatura FROM em_data WHERE fecha like "'.date('Y-m-d').'%" GROUP BY HOUR(fecha) ORDER BY fecha DESC LIMIT 100;';
+}elseif(@$_GET['md'] == 'test'){
+	$s_sql = 'SELECT fecha,temperatura,fecha FROM em_data WHERE fecha like "'.date('Y-m-d').'%" GROUP BY HOUR(fecha) ORDER BY fecha DESC LIMIT 100;';
 }else{
-	$s_select = 'SELECT * FROM em_data ';
-	/***************************/
-	$s_where = 'WHERE fecha like "%5:00" OR fecha like "%0:00" ';
-	//$s_where = ' WHERE fecha like "%0:00" ';
-	//$s_where = '';
-	/***************************/
-	$s_orderlimit = ' ORDER BY fecha DESC LIMIT 100;';
-	$s_sql = $s_select.$s_where.$s_orderlimit;
-	$cale = '1';
-	$cale_name = 'Activar';
-	if(@$_GET['cale'] != ''){
-		$cale = $_GET['cale'];
-		if($bbdd->insert(array('status' => $cale),'em_status')){
-			$cale_name = 'Desactivar';
-		}
+	$s_sql = 'SELECT fecha,temperatura FROM em_data ORDER BY fecha DESC LIMIT 60;';
+	$b_refresh = true;
+}
+
+
+$cale = '1';
+if(@$_GET['cale'] != ''){
+	$cale = $_GET['cale'];
+	if(!$bbdd->insert(array('status' => $cale),'em_status')){
+		//Mostrar error
 	}
 }
 
@@ -79,11 +77,13 @@ if(!$bbdd->consulta('SELECT * FROM em_data ORDER BY fecha DESC LIMIT 1;')){
 
 	if($bbdd->consulta('SELECT * FROM em_status ORDER BY fecha DESC LIMIT 1;')){
 		$cale = '1';
-		$cale_name = 'Activar';
+		$cale_name = 'Activar calefacción';
+		$cale_color = 'green';
 		$cale_class = 'success';
 		if($bbdd->resultado[0]['status'] == '1'){
 			$cale = '0';
-			$cale_name = 'Desactivar';
+			$cale_name = 'Desactivar calefacción';
+			$cale_color = 'red';
 			$cale_class = 'danger';
 		}
 	}

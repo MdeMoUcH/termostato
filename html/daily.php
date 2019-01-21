@@ -6,6 +6,8 @@ $s_sql = 'SELECT * FROM em_daily_temp ORDER BY fecha DESC LIMIT 60;';
 
 $bbdd = new Bbdd();
 
+
+$b_refresh = false;
 if(!$bbdd->consulta('SELECT * FROM em_daily_temp ORDER BY fecha DESC LIMIT 1;')){
 	die('<h1>(x_x)</h1>');
 }else{
@@ -48,10 +50,12 @@ if(!$bbdd->consulta('SELECT * FROM em_daily_temp ORDER BY fecha DESC LIMIT 1;'))
 	if($bbdd->consulta('SELECT * FROM em_status ORDER BY fecha DESC LIMIT 1;')){
 		$cale = '1';
 		$cale_name = 'Activar';
+			$cale_color = 'green';
 		$cale_class = 'success';
 		if($bbdd->resultado[0]['status'] == '1'){
 			$cale = '0';
 			$cale_name = 'Desactivar';
+			$cale_color = 'red';
 			$cale_class = 'danger';
 		}
 	}
