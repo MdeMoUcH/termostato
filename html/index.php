@@ -92,6 +92,7 @@ if(!$bbdd->consulta('SELECT * FROM em_data ORDER BY fecha DESC LIMIT 1;')){
 		<!--<script src="jquery-1.7.1.min.js" type="text/javascript"></script>-->
 		<script src="Chart.js" type="text/javascript"></script>
 		<!--<meta http-equiv="refresh" content="150">-->
+		<title>MdeWeather</title>
 	</head>
 <body style="font-family: Verdana;">
 	<div style="position:relative 5px 5px;width:34px;height:34px;margin-right:10px;background-color:<?=$temp_color?>;border-style:solid;clear:both;float:left;">
@@ -109,13 +110,13 @@ if(!$bbdd->consulta('SELECT * FROM em_data ORDER BY fecha DESC LIMIT 1;')){
 		
 		<div style="margin-top:10px;">
 			<p style="text-align:center;text-decoration:none;font-size:3vh;">
-				<a style="text-decoration:none;" href='/'><b>Last hours</b></b></a>
+				<a style="text-decoration:none;" href='/'><b>Últimas horas</b></b></a>
 				&nbsp;&nbsp;&nbsp;
-				<a  style="text-decoration:none;" href='/daily.php'><b>Last Days</b></a>
+				<a  style="text-decoration:none;" href='/daily.php'><b>Resumen diario</b></a>
 				&nbsp;&nbsp;&nbsp;
-				<a style="text-decoration:none;" href='/?md=today'><b>Today</b></a>
+				<a style="text-decoration:none;" href='/?md=today'><b>Hoy</b></a>
 				&nbsp;&nbsp;&nbsp;
-				<a style="text-decoration:none;" href='/?md=yesterday'><b>Yesterday</b></a>
+				<a style="text-decoration:none;" href='/?md=yesterday'><b>Ayer</b></a>
 			</p>
 			<p style="text-align:center;text-decoration:none;font-size:3vh;">
 				<a style="text-decoration:none;" href='/?cale=<?=$cale?>'><b><?=$cale_name?></b></b></a>

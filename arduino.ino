@@ -1,8 +1,8 @@
 
 /******************************
  * 
- * Termostato
- * ==========
+ * Estación meteorológica v0.0.1
+ * ===========================
  * 
  * MdeMoUcH 2018
  * 
@@ -10,7 +10,6 @@
  * -El termistor usa una resistencia de 10K
  * -La pantalla usa una resistencia de 1K
  * -El led usa resistencias de 1K
- * -El relé usa resistencias de 10K
  * 
  * 
  * 
@@ -80,10 +79,10 @@ void loop(){
   float tempC = tempK - 273.15;
   float tempF = (tempC * 9.0) / 5.0 + 32.0;
 
-  /*
+  
   if(cale=="ON"){
-    tempC = tempC - 3.5;
-  }*/
+    tempC = tempC + 0.5;
+  }
   
   
   if(Serial.available() > 0){
@@ -98,7 +97,7 @@ void loop(){
       if(value != '\n'){
         cale = "OFF";
         if(value == '2'){
-          blue = 155;
+          blue = 99;
           green = 255;
           estado = "    ON (Wait)";
         }else{

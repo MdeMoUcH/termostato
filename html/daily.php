@@ -67,13 +67,13 @@ if(!$bbdd->consulta('SELECT * FROM em_daily_temp ORDER BY fecha DESC LIMIT 1;'))
 		
 		<div style="margin-top:10px;">
 			<p style="text-align:center;text-decoration:none;font-size:3vh;">
-				<a style="text-decoration:none;" href='/'><b>Last hours</b></b></a>
+				<a style="text-decoration:none;" href='/'><b>Últimas horas</b></b></a>
 				&nbsp;&nbsp;&nbsp;
-				<a  style="text-decoration:none;" href='/daily.php'><b>Last days</b></a>
+				<a  style="text-decoration:none;" href='/daily.php'><b>Resumen diario</b></a>
 				&nbsp;&nbsp;&nbsp;
-				<a style="text-decoration:none;" href='/?md=today'><b>Today</b></a>
+				<a style="text-decoration:none;" href='/?md=today'><b>Hoy</b></a>
 				&nbsp;&nbsp;&nbsp;
-				<a style="text-decoration:none;" href='/?md=yesterday'><b>Yesterday</b></a>
+				<a style="text-decoration:none;" href='/?md=yesterday'><b>Ayer</b></a>
 			</p>
 		</div>
 	</div>

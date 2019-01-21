@@ -16,7 +16,7 @@ import MySQLdb as mdb;
 import sys;
 
 
-temp_caldera = 24.50
+temp_caldera = 22.00
 
 
 try:
