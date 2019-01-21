@@ -49,12 +49,12 @@ if(!$bbdd->consulta('SELECT * FROM em_daily_temp ORDER BY fecha DESC LIMIT 1;'))
 
 	if($bbdd->consulta('SELECT * FROM em_status ORDER BY fecha DESC LIMIT 1;')){
 		$cale = '1';
-		$cale_name = 'Activar';
-			$cale_color = 'green';
+		$cale_name = 'Activar calefacción';
+		$cale_color = 'green';
 		$cale_class = 'success';
 		if($bbdd->resultado[0]['status'] == '1'){
 			$cale = '0';
-			$cale_name = 'Desactivar';
+			$cale_name = 'Desactivar calefacción';
 			$cale_color = 'red';
 			$cale_class = 'danger';
 		}
@@ -62,3 +62,4 @@ if(!$bbdd->consulta('SELECT * FROM em_daily_temp ORDER BY fecha DESC LIMIT 1;'))
 }
 
 include("tpl.php");
+
