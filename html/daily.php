@@ -1,7 +1,19 @@
 <?php
+/*****************************
+ * MdeMoUcH
+ * mdemouch@gmail.com
+ * http://www.lagranm.com/
+ *****************************/
+
+
 include_once('lib.php');
 
-$s_sql = 'SELECT * FROM em_daily_temp ORDER BY fecha DESC LIMIT 60;';
+
+if(@$_GET['md'] == 'monthly'){
+	$s_sql = 'SELECT * FROM em_monthly_temp ORDER BY fecha DESC LIMIT 36;';
+}else{
+	$s_sql = 'SELECT * FROM em_daily_temp ORDER BY fecha DESC LIMIT 60;';
+}
 
 
 $bbdd = new Bbdd();

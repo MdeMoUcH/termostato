@@ -1,4 +1,9 @@
 <html>
+<!--
+ * MdeMoUcH
+ * mdemouch@gmail.com
+ * http://www.lagranm.com/
+-->
 	<head>
 		<script src="Chart.js" type="text/javascript"></script>
 		<link rel="stylesheet" href="bootstrap.min.css">
@@ -6,17 +11,17 @@
 
 		<style>
 			body {background-color: #333;color: #111;}
-			.col-sm-3, .col-sm-6 {margin-top:10px;margin-bottom:-12px;}
+			.col-sm-3, .col-sm-6, col-sm-12 {margin-top:10px;margin-bottom:-12px;}
 			.align_center {text-align:center;}
 			.align_right {text-align:right;}
-			.btn {padding-top:12px;padding-bottom:12px;}
-			.btn-danger {width:60%;}
-			.btn-success {width:60%;}
-			.btn-secondary {min-width:15%;margin-bottom:10px;}
+			.btn {margin-top:10px;padding-bottom:12px;margin-bottom:10px;}
+			.btn-danger {width:100%;margin-top:18px;}
+			.btn-success {width:100%;margin-top:18px;}
+			.btn-secondary {width:100%;}
 			.container-fluid {width:95%;}
-			.row {background-color:#6C757D;margin:10px;border-radius:12px;width:100%;}
+			.cabecera {background-color:#6C757D;margin:10px;border-radius:12px;width:100%;}
 			.botonera {margin-top:10px;width:100%;}
-			.chart-container {position:relative;height:70vh;width:100%;margin-top:30px;}
+			.chart-container {position:relative;height:60vh;width:100%;margin-top:30px;}
 		</style>
 
 		<? if($b_refresh){echo '<meta http-equiv="refresh" content="60">';}?>
@@ -24,13 +29,13 @@
 	</head>
 	
 <body style="font-family: Verdana;">
+	
 	<div class="container-fluid">
-		<div class="row">
+		
+		
+		<div class="row cabecera">
 			<div class="col-sm-3">
 				<img src="termostato-<?=$cale_color?>.png" height="64px" />
-				<!--<div style="position:relative 5px 5px;width:64px;height:64px;background-color:<?=$temp_color?>;border-style:solid;clear:both;float:left;border-color:#000;">
-					<div style="padding:0px;margin:0px;height:<?=$temp_height?>;background-color:#E5E5E5;">&nbsp;</div>
-				</div>-->
 			</div>
 			<div class="col-sm-6 align_center titulo">
 				<h3>Ter-MoUcH-tato</h3>
@@ -44,24 +49,40 @@
 		
 		<div class="chart-container">
 			<canvas id="myChart"></canvas>
-			
-			<div class="botonera">
-				<p class="align_center">
-					<a class="btn btn-secondary" href='/'><b>Última hora</b></b></a>
-					&nbsp;&nbsp;&nbsp;
-					<a class="btn btn-secondary" href='/?md=hourly'><b>Últimas horas</b></b></a>
-					&nbsp;&nbsp;&nbsp;
-					<a class="btn btn-secondary" href='/?md=today'><b>Hoy</b></a>
-					&nbsp;&nbsp;&nbsp;
-					<a class="btn btn-secondary" href='/?md=yesterday'><b>Ayer</b></a>
-					&nbsp;&nbsp;&nbsp;
-					<a class="btn btn-secondary" href='/daily.php'><b>Resumen diario</b></a>
-				</p>
-				<p class="align_center">
-					<a class="btn btn-<?=$cale_class?>" href='/?cale=<?=$cale?>'><b><?=$cale_name?></b></b></a>
-				</p>
-			</div>
 		</div>
+		
+		
+		<div class="botonera">
+			<div class="row">
+				<div class="col-sm-3 align_center">
+					<a class="btn btn-secondary" href='/'><b>Última hora</b></b></a>
+				</div>
+				<div class="col-sm-3 align_center">
+					<a class="btn btn-secondary" href='/?md=hourly'><b>Últimas horas</b></b></a>
+				</div>
+				<div class="col-sm-3 align_center">
+					<a class="btn btn-secondary" href='/?md=today'><b>Hoy</b></a>
+				</div>
+				<div class="col-sm-3 align_center">
+					<a class="btn btn-secondary" href='/?md=yesterday'><b>Ayer</b></a>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-6 align_center">
+					<a class="btn btn-secondary" href='/daily.php'><b>Resumen diario</b></a>
+				</div>
+				<div class="col-sm-6 align_center">
+					<a class="btn btn-secondary" href='/daily.php?md=monthly'><b>Resumen mensual</b></a>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-12 align_center">
+					<a class="btn btn-<?=$cale_class?>" href='/?cale=<?=$cale?>'><b><?=$cale_name?></b></b></a>
+				</div>
+			</div>
+			<p>&nbsp;</p>
+		</div>
+		
 	</div>
 	
 	

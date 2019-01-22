@@ -1,4 +1,9 @@
 <?php
+/*****************************
+ * MdeMoUcH
+ * mdemouch@gmail.com
+ * http://www.lagranm.com/
+ *****************************/
 
 class bbdd {
     function __construct(){
