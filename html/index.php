@@ -20,8 +20,6 @@ if(@$_GET['md'] == 'hourly'){
 	$s_sql = 'SELECT fecha,SUM(temperatura)/COUNT(fecha) as temperatura FROM em_data WHERE fecha like "'.date('Y-m-d',strtotime('-1 day')).'%" AND (fecha like "%5:00" OR fecha like "%0:00") GROUP BY HOUR(fecha) ORDER BY fecha DESC;';
 }elseif(@$_GET['md'] == 'today'){
 	$s_sql = 'SELECT fecha,SUM(temperatura)/COUNT(fecha) as temperatura FROM em_data WHERE fecha like "'.date('Y-m-d').'%" GROUP BY HOUR(fecha) ORDER BY fecha DESC LIMIT 100;';
-}elseif(@$_GET['md'] == 'test'){
-	$s_sql = 'SELECT fecha,temperatura,fecha FROM em_data WHERE fecha like "'.date('Y-m-d').'%" GROUP BY HOUR(fecha) ORDER BY fecha DESC LIMIT 100;';
 }else{
 	$s_sql = 'SELECT fecha,temperatura FROM em_data ORDER BY fecha DESC LIMIT 60;';
 	$b_refresh = true;
@@ -32,7 +30,7 @@ $cale = '1';
 if(@$_GET['cale'] != ''){
 	$cale = $_GET['cale'];
 	if(!$bbdd->insert(array('status' => $cale),'em_status')){
-		//Mostrar error
+		die('<h1>(x_x)</h1>');
 	}
 }
 
@@ -49,26 +47,15 @@ if(!$bbdd->consulta('SELECT * FROM em_data ORDER BY fecha DESC LIMIT 1;')){
 	$s_data = '';
 	$s_max = '';
 	$s_min = '';
-	asort($bbdd->resultado);
-	foreach($bbdd->resultado as $dato){
-		if(@$_GET['md'] == 'daily'){
-			$fecha = format_fecha($dato['fecha']);
-			$bbdd->consulta('SELECT temperatura FROM em_data WHERE fecha like "'.$fecha.'%" ORDER BY temperatura DESC LIMIT 1;');
-			if($s_max == ''){
-				$s_max = $bbdd->resultado[0]['temperatura'];
-			}else{
-				$s_max .= ', '.$bbdd->resultado[0]['temperatura'];
-			}
-			$bbdd->consulta('SELECT temperatura FROM em_data WHERE fecha like "'.$fecha.'%" ORDER BY temperatura ASC LIMIT 1;');
-			if($s_min == ''){
-				$s_min = $bbdd->resultado[0]['temperatura'];
-			}else{
-				$s_min .= ', '.$bbdd->resultado[0]['temperatura'];
-			}
-			$fecha = format_fecha($dato['fecha']);
-		}else{
+	$a_data = $bbdd->resultado;
+	asort($a_data);
+	foreach($a_data as $dato){
+		if(@$_GET['md'] == 'yesterday' || @$_GET['md'] == 'today'){
 			$fecha = format_hora($dato['fecha']);
+		}else{
+			$fecha = format_fecha($dato['fecha']);
 		}
+		
 		if($s_label == ''){
 			$s_label = '"'.$fecha.'"';
 		}else{
@@ -81,6 +68,7 @@ if(!$bbdd->consulta('SELECT * FROM em_data ORDER BY fecha DESC LIMIT 1;')){
 			$s_data .= ', '.$dato['temperatura'];
 		}
 	}
+
 
 	if($bbdd->consulta('SELECT * FROM em_status ORDER BY fecha DESC LIMIT 1;')){
 		$cale = '1';
