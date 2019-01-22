@@ -49,26 +49,20 @@ if(!$bbdd->consulta('SELECT * FROM em_data ORDER BY fecha DESC LIMIT 1;')){
 	$s_min = '';
 	$a_data = $bbdd->resultado;
 	asort($a_data);
+	
 	foreach($a_data as $dato){
-		if(@$_GET['md'] == 'yesterday' || @$_GET['md'] == 'today'){
-			$fecha = format_hora($dato['fecha']);
-		}else{
-			$fecha = format_fecha($dato['fecha']);
-		}
-		
+		$fecha = format_hora($dato['fecha']);
 		if($s_label == ''){
 			$s_label = '"'.$fecha.'"';
 		}else{
 			$s_label .= ',"'.$fecha.'"';
 		}
-		
 		if($s_data == ''){
 			$s_data = $dato['temperatura'];
 		}else{
 			$s_data .= ', '.$dato['temperatura'];
 		}
 	}
-
 
 	if($bbdd->consulta('SELECT * FROM em_status ORDER BY fecha DESC LIMIT 1;')){
 		$cale = '1';
