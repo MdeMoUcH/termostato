@@ -1,4 +1,3 @@
-
 /******************************
  * 
  * Estación meteorológica v0.0.1
@@ -60,7 +59,7 @@ void setup(){
 
   red = 0;
   green = 0;
-  blue = 255;
+  blue = 55;
 
   startTime = 60000;
 
@@ -81,7 +80,7 @@ void loop(){
 
   
   if(cale=="ON"){
-    tempC = tempC + 0.7;
+    tempC = tempC + 0.9;
   }
   
   
@@ -90,26 +89,28 @@ void loop(){
     if(value == '1'){
       cale = "ON";
       estado = "    ON (Heat)";
-      green = 255;
+      red = 55;
+      green = 0;
       blue = 0;
       digitalWrite(LEDPIN, HIGH);
     }else{
       if(value != '\n'){
         cale = "OFF";
         if(value == '2'){
-          blue = 99;
-          green = 255;
+          red = 0;
+          green = 55;
+          blue = 0;
           estado = "    ON (Wait)";
         }else{
-          blue = 255;
+          red = 0;
           green = 0;
+          blue = 55;
           estado = "       OFF";
         }
         digitalWrite(LEDPIN, LOW);
       }
     }
   }
-
 
   String taxt = "";
   
