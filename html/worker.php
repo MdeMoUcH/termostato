@@ -45,14 +45,23 @@ foreach($a_fechas as $fecha){
 }
 
 
-$s_sql = 'SELECT DATE_FORMAT(fecha, "%Y-%m") as fecha FROM em_data WHERE MONTH(fecha) NOT IN (SELECT fecha FROM em_monthly_temp) GROUP BY YEAR(fecha), MONTH(fecha) ORDER BY fecha ASC;';
+$s_sql = 'SELECT fecha FROM em_monthly_temp GROUP BY fecha;';
+
+$bbdd->consulta($s_sql);
+
+$a_meses = array();
+foreach($bbdd->resultado as $dato){
+	$a_meses[$dato['fecha']] = $dato['fecha'];
+}
+
+$s_sql = 'SELECT DATE_FORMAT(fecha, "%Y-%m") as fecha FROM em_data GROUP BY YEAR(fecha), MONTH(fecha) ORDER BY fecha ASC;';
 
 $bbdd->consulta($s_sql);
 
 $a_fechas = $bbdd->resultado;
 
 foreach($a_fechas as $fecha){
-	if($fecha['fecha'] != date('Y-m')){
+	if($fecha['fecha'] != date('Y-m') && !isset($a_meses[$fecha['fecha']])){
 		$s_sql = 'SELECT SUM(temperatura)/COUNT(id) FROM em_data WHERE fecha like "%'.$fecha['fecha'].'%" GROUP BY MONTH(fecha);';
 		$bbdd->consulta($s_sql);
 		$media = $bbdd->resultado[0][0];

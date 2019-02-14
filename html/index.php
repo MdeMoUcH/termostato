@@ -31,6 +31,9 @@ if(@$_GET['cale'] != ''){
 	$cale = $_GET['cale'];
 	if(!$bbdd->insert(array('status' => $cale),'em_status')){
 		die('<h1>(x_x)</h1>');
+	}else{
+		print_r('ok');
+		header('Location: index.php');
 	}
 }
 
